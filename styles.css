@@ -1,0 +1,95 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: aliceblue;
+}  
+
+#superheroes-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  margin-top: 30px ;
+}
+
+#superheroes-container .heading{
+  text-align: center;
+}
+
+#search-hero-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+#hero-name{
+  height: 35px;
+  width: 60%;
+  font-size: 1rem;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border: none;
+  padding-left: 15px;
+  box-shadow: 0 0 10px rgba(0, 145, 255, 0.271);
+}
+
+.search-hero-btn {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border: none;
+  width: 7%;
+  /* box-shadow: 0 0 10px orange; */
+  border: 1px solid rgb(0, 145, 255);
+  background-color: rgb(0, 145, 255);
+  border-left: none;
+  padding: 11px;
+  color: white;
+  padding-right: 10px;
+}
+
+h3 {
+  margin-top: 50px;
+}
+
+.all-superheroes {
+  width: 80%;
+  height: 40vh;
+  padding: 20px;
+  display: flex;
+  background-color: lightblue;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: scroll;
+  align-items: center;
+}
+
+.superhero {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  border: 2px solid black;
+}
+
+.superhero-name {
+  color: rgb(22, 42, 111);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#results {
+  height: 40vh;
+}
+
+.hero-img{
+  height: 150px;
+  width: 150px;
+  display: inline;
+}
+
+/* favorites */
+.favorite-content {
+  display: none;
+}

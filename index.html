@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Superhero Hunter App</title>
+</head>
+<body>
+    <!-- home page -->
+      <div id="superheroes-container">
+        <h1 class="heading">Superhero Hunter</h1>
+
+        <!-- search hero container -->
+        <div id="search-hero-container">
+        <input type="text" id="hero-name" placeholder="Search Superhero...">
+        <button class="search-hero-btn">Search</button>
+        </div>
+        <div id="favorites">
+          <button onclick="showFavorites()" id="fav-button">favorites</button>
+          <div class="favorite-content">
+
+          </div>
+        </div>
+        <!-- container for all the superheroes -->
+        <h3 class="heading">Super Heroes</h3>
+        <div class="all-superheroes">
+          <!-- <div class="superHero">
+            <p>name</p>
+          </div> -->
+        </div>
+
+      </div>
+      <!-- container to display result -->
+      <div id="result"></div>
+
+      <!-- scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
