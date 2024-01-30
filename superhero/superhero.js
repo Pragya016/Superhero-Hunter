@@ -1,11 +1,10 @@
 // select element from dom
 const result = document.querySelector('#result');
 const addToFavBtn = document.querySelector('#fav-button');
-const favoriteContent = document.querySelector('.favorite-content');
 const userInput = document.getElementById('hero-name');
 
 // favorite superhero 
-const favorites = ['hi','hello'];
+const favorites = [];
 
 // keys
 const publicKey = '4030d53488ca263a048f5b7092321655';
@@ -62,7 +61,7 @@ function displaySuperHero(data) {
     }
 
     // check if any story is available 
-    if (data.stories.available === 0) { 
+    if (data.stories.available === 0) {
         stories = '';
     } else {
         const storiesHtml = data.stories.items.map(story => `<p>${story.name}</p>`).join('');
@@ -130,7 +129,7 @@ function displaySuperHero(data) {
         <button id="favorite">Add to favorites</button>
     </div>
   `;
-    
+
     result?.insertAdjacentHTML('beforeend', html);
     const favoriteBtn = document.querySelector('#favorite');
     favoriteBtn?.addEventListener('click', () => {
@@ -139,7 +138,6 @@ function displaySuperHero(data) {
 }
 
 // add character to favorites list
-let favCount = 1;
 function addToFavorites(id) {
     const idIndex = favorites.indexOf(id);
     if (idIndex >= 0) {
@@ -147,10 +145,20 @@ function addToFavorites(id) {
         return;
     }
 
-    // alert('Added to the favorites');
+    alert('Added to the favorites');
     favorites.push(id);
-    localStorage.setItem(`favorites${favCount}`, id);
-    favCount++;
-    // favoriteContent?.insertAdjacentHTML('beforeend', favHero);
-    console.log(favorites)
+    saveUniqueItem(favorites, id);
+}
+
+function saveUniqueItem(key, value) {
+    // Check if the key already exists and create a unique key
+    let uniqueKey = key;
+    let counter = 1;
+    while (localStorage.getItem(uniqueKey) !== null) {
+        uniqueKey = key + '_' + counter;
+        counter++;
+    }
+
+    // Store the item with the unique key
+    localStorage.setItem(uniqueKey, value);
 }

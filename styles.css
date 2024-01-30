@@ -3,27 +3,30 @@
 body{
   margin: 0;
   padding: 0;
-  background:url('https://wallpapers.com/images/hd/4k-marvel-digital-cartoon-t9z4pnuivn6488jq.jpg');
-  backdrop-filter: blur(3px);
-  background-position: center;
+  backdrop-filter: blur(10px);
 }  
+
+.heading, .heading-h3, .superhero-name {
+  cursor: pointer;
+}
 
 #superheroes-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  background:url('https://wallpapers.com/images/hd/4k-marvel-digital-cartoon-t9z4pnuivn6488jq.jpg');
+  background-position: center;
   align-items: center;
-  height: auto;
+  justify-content: center;
+  height: 100vh;
   width: auto;
 }
 
 .heading{
-  text-align: center;
   margin-top: 30px;
   margin-bottom: 10px;
-  text-shadow: 5px 5px 8px rgb(0, 102, 171);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.297);
   font-size: 4rem;
-  color: white;
+  color: rgb(1, 116, 192);
   font-family: 'Cute Font', sans-serif;
 }
 
@@ -46,6 +49,7 @@ body{
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   border: none;
+  color: rgb(4, 103, 225);
   padding-left: 15px;
   box-shadow: 0 0 10px rgba(0, 145, 255, 0.271);
 }
@@ -92,22 +96,66 @@ body{
   color: rgb(0, 67, 154);
 }
 
+.favorite-content{
+  background-color: whitesmoke;
+  position: absolute;
+  border-radius: 10px;
+  right: 90px;
+  top: 20px;
+  overflow: scroll;
+  background-color: white;
+  width: 200px;
+  color: rgb(2, 107, 187);
+  padding: 0 10px;
+  height: 250px;
+  max-height: 250px;
+}
+
+.fav-info-para {
+  display: block;
+  font-weight: 600;
+  text-align: center;
+}
+
+.favorite-item {
+  display: flex;
+  justify-content: space-between;
+  padding:0 5px;
+  align-items: center;
+  border-bottom: 2px solid skyblue;
+}
+
+.remove-fav-item {
+  height: 25px;
+  background-color: white;
+  color: rgb(0, 128, 192);
+  border: 2px solid rgb(0, 128, 192);
+  border-radius: 7px;
+  font-weight: 600;
+}
+
+.remove-fav-item:hover{
+  background-color: rgb(0, 128, 192);
+  color: white;
+}
+
 .heading-h3 {
   margin-top: 50px;
-   font-size: 3rem;
+   font-size: 1.5rem;
    margin-bottom: 20px;
-  color: white;
-  font-family: 'Cute Font', sans-serif;
-  text-shadow: 5px 5px 8px rgb(0, 102, 171);
+  color: rgb(1, 116, 192);
+  /* font-family: 'Cute Font', sans-serif; */
+  text-shadow: 0px 0px 3px rgb(255, 255, 255);
 }
 
 .all-superheroes {
-  box-shadow: 0 0 25px rgb(157, 236, 252);
+  box-shadow: 0 0 15px rgb(0, 106, 167);
   width: 70%;
+  border-radius: 10px;
   height: 40vh;
   padding: 20px;
   display: flex;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.891);
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
@@ -123,7 +171,7 @@ body{
 }
 
 .superhero-name {
-  color: rgb(3, 69, 192);
+  color: rgb(0, 101, 177);
   font-size: 1rem;
   font-weight: 600;
 }
