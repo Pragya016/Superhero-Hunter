@@ -12,7 +12,6 @@ const ts = new Date().getTime().toString();
 
 // generate hash
 function generateHash(ts, privateKey, publicKey) {
-  1
   const stringToHash = ts + privateKey + publicKey;
   return CryptoJS.MD5(stringToHash).toString();
 }
@@ -68,11 +67,30 @@ window.onload = () => {
 searchHeroBtn.addEventListener("click", async () => {
   const hash = generateHash(ts, privateKey, publicKey);
   const heroName = userInput.value;
-
-  const req = await fetch(`https://gateway.marvel.com/v1/public/characters?name=${heroName}&ts=${ts}&apikey=${publicKey}&hash=${hash}`);
-  const res = await req.json();
-  const data = res.data.results[0];
-  userInput.value = '';
-  window.open('./superhero/hero.html?id=' + data.name, '_blank');
+  try {
+    const req = await fetch(`https://gateway.marvel.com/v1/public/characters?name=${heroName}&ts=${ts}&apikey=${publicKey}&hash=${hash}`);
+    const res = await req.json();
+    const data = res.data.results[0];
+    userInput.value = '';
+    window.open('./superhero/hero.html?id=' + data.name, '_blank');
+  }
+  catch (err) { 
+    setTimeout(() => {
+      window.open('./ErrorPage/error.html', '_self');
+    }, 1000)
+  }
 })
 
+// show favorites superheroes
+let bool = false;
+function showFavorites() {
+  if (!bool) {
+    console.log('1')
+    // favoriteContent.style.display = 'block';
+    bool = true;
+  } else {
+    console.log(2)
+    // favoriteContent.style.display = 'none';
+    bool = false;
+  }
+}
