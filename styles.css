@@ -54,7 +54,7 @@ body{
 
 /* search bar */
 
-#hero-name{
+#search-hero-container input{
   height: 35px;
   font-size: 1rem;
   width: 40%;
@@ -65,7 +65,7 @@ body{
   color: lightgray;
 }
 
-#hero-name:focus {
+#search-hero-container input:focus {
   outline: none;
 }
 
