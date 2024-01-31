@@ -82,6 +82,10 @@ i {
   font-weight: 600;
 }
 
+#hero-name {
+  /* opacity:0; */
+}
+
 /*------------- favorites list------------ */
 
 #favorites{

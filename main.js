@@ -1,12 +1,13 @@
 // selecting all the elements from html
 const homePage = document.querySelector('#superheroes-container')
-const userInput = document.getElementById('hero-name');
+const searchHeroContainer = document.querySelector('#search-hero-container')
+const userInputName = document.getElementById('hero-name');
 const allSuperHeroes = document.querySelector('.all-superheroes')
 const superHeroName = document.querySelector('.superhero-name');
 const favoritesList = document.querySelector('.favorite-content');
 const favoriteBtn = document.querySelector('#fav-button');
 const favHeroInfo = document.querySelector('.fav-info-para');
-let heroData;
+let superheroesData;
 
 // put every superhero's name in the array so that it may show suggestions whenever user type something
 const suggestions = [];
@@ -36,9 +37,8 @@ async function getSuperheroes() {
     const apiUrl = fetchData();
     const req = await fetch(apiUrl);
     const res = await req.json();
-    console.log(res)
     const data = res.data.results;
-    heroData = data;
+    superheroesData = data;
     data.forEach(el => {
       suggestions.push(el.name);
     });
@@ -56,9 +56,9 @@ function displayNames(data) {
     superHeroDiv.className = "superHero";
     const superHeroName = document.createElement("p");
     superHeroName.className = "superhero-name"
-    superHeroName.innerHTML = el.name || "-";
+    superHeroName.innerHTML = el.name || "";
     superHeroDiv.appendChild(superHeroName);
-    superHeroName.addEventListener('click', () => displaySuperheroDetails(el));
+    superHeroName.addEventListener('click', (details) => displaySuperheroDetails(el));
     allSuperHeroes?.appendChild(superHeroDiv);
   });
 }
@@ -66,40 +66,21 @@ function displayNames(data) {
 
 // display superhero details if user clicks on any name
 function displaySuperheroDetails(data) {
-  window.open('./superhero/hero.html?id=' + data.name, '_blank');
+  window.open(`./superhero/hero.html?id=${data.name}`, '_blank');
 }
 
-// execute the function atleast for one time 
-window.onload = () => {
-  getSuperheroes();
-};
 
-// show suggestions
-userInput?.addEventListener('input', (e) => {
-
-  heroData.forEach(el => {
-    if (el.name.includes(e.target.value)) {
-      console.log(el.name);
-    }
-  });
-})
-
-// display superhero details on enter keypress
-userInput.addEventListener('submit', displaySuperhero);
-async function displaySuperhero() {
-  const hash = generateHash(ts, privateKey, publicKey);
-  const heroName = userInput.value;
-
-  // show an alert if user hasn't typed enything
-  if (heroName === '') {
-    alert('Invalid user input!');
+searchHeroContainer?.addEventListener('submit', async () => {
+  let input = userInputName.value;
+  if (input === '') {
+    alert('Invalid Input!')
     return;
   }
 
   try {
-    const data = fetchDataByName(heroName, ts, publicKey, hash);
-    console.log(data);
-    userInput.value = '';
+    const hash = generateHash(ts, privateKey, publicKey);
+    const data = await fetchDataByName(input, ts, publicKey, hash);
+    input = '';
     window.open('./superhero/hero.html?id=' + data.name, '_blank');
   }
   catch (err) {
@@ -107,7 +88,37 @@ async function displaySuperhero() {
       window.open('./ErrorPage/error.html', '_blank');
     }, 1000)
   }
-}
+})
+
+// execute the function atleast for one time
+window.onload = () => {
+  getSuperheroes();
+};
+
+// // display superhero details on enter keypress
+// async function displaySuperhero(details) {
+//   const hash = generateHash(ts, privateKey, publicKey);
+//   const heroName = userInputName.value;
+//   console.log(userInputName.value);
+
+//   // show an alert if user hasn't typed enything
+//   if (heroName === '') {
+//     // alert('Invalid user input!');
+//     return;
+//   }
+
+//   try {
+//     const data = fetchDataByName(heroName, ts, publicKey, hash);
+//     console.log(data);
+//     userInputName.value = '';
+//     window.open('./superhero/hero.html?id=' + details.name, '_blank');
+//   }
+//   catch (err) {
+//     setTimeout(() => {
+//       window.open('./ErrorPage/error.html', '_blank');
+//     }, 1000)
+//   }
+// }
 
 // fetch data by name
 async function fetchDataByName(name, ts, publicKey, hash) {
@@ -178,9 +189,20 @@ function showFavorites() {
   }
 }
 
-// remove favorite item from the list 
+// remove favorite item from the list
 function removefavoriteItem(e, key) {
   const removed = e.target.closest('.favorite-item');
   favoritesList?.removeChild(removed);
   localStorage.removeItem(key);
 }
+
+
+// show suggestions
+// userInputName?.addEventListener('input', (e) => {
+
+//   heroData.forEach(el => {
+//     if (el.name.includes(e.target.value)) {
+//       console.log(el.name);
+//     }
+//   });
+// })

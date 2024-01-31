@@ -1,155 +1,96 @@
 body, html {
     padding: 0;
     margin: 0;
-    color: white;
+    color: lightgray;
 }
 
-.details-container{
-    width: 90%;
-    margin: auto;
-}
-
-.hero-details{
-    /* background-color: rgb(53, 60, 67); */
-    background: url('https://www.shutterstock.com/image-photo/high-definition-star-field-colorful-600nw-1036688914.jpg');
+/* results container (mainly for background purpose) */
+#result {
+    background: url('https://e0.pxfuel.com/wallpapers/313/593/desktop-wallpaper-sunrise-in-space-space.jpg');
     background-repeat:no-repeat ;
-    background-position: center;
-    height: auto;
+    background-position: fixed;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 15px;
-    justify-content: center;
-}
-
-.name {
-    text-align: center;
-    font-size: 3.5rem;
-}
-
-h4{
-    font-size: 1.5rem;
-}
-p{
-    font-size: 1rem;
-}
-
-.description {
-    margin-top: 80px;
+    height: 100vh;
+    width: 100vw;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
 }
 
-.hero-img{
-    height: 250px;
-    width: fit-content;
+/* for responsiveness */
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 20px;
+     width: 65%;
+     box-shadow: 0 0 25px 3px rgb(35, 35, 35);
+     height: 450px;
+    position: relative;
+    top: 5%;
+    overflow: scroll;
     margin: auto;
-}  
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.275);
+}
 
-.hero-img img {
+/* two containers : one will contain image and the other will contain details */
+/* first container that will contain image */
+.superhero-image{
     height: 100%;
-    border: 1px solid black;
-    width: 500px;
-    box-shadow: 0px 0px 15px 5px rgb(92, 35, 123);
-}
-
-.comics{
+    width: 35%;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: auto;
+    align-items: center;
 }
 
-.all-comics{
+.superhero-image img {
+    height:90% ;
+    width: 100%;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.225);
+    border-radius: 5px;
+}
+
+/* second container that will contain details */
+.superhero-details{
+   width: 60%;
+   height: 90%;
+   overflow: scroll;
+}
+
+.superhero-name, .comics, .events, .stories, .series {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 300px;
-    overflow: scroll;
+    align-items: center;
 }
 
-.all-comics p {
-    margin: 10px;
-}
-
-.events{
+.details {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: auto;
 }
 
-.all-events{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 400px;
-    overflow: scroll;
+.name, .comic-heading, .series-heading, .stories-heading, .events-heading, .details-heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-right: 10px;
 }
 
-.all-events p {
-    margin: 10px;
-}
-
-.series{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: auto;
-}
-
-.all-series{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 400px;
-    overflow: scroll;
-}
-
-.all-series p {
-    margin: 10px;
-}
-
-.stories{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: auto;
-}
-
-.all-stories{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 400px;
-    overflow: scroll;
-}
-
-.all-stories p {
-    margin: 10px;
-} 
-
-.devider{
-    width: 50%;
-    margin: 100px auto 50px; 
-    border-top: 8px dotted rgba(255, 255, 255, 0.363);
-}
+/* --------------- */
 
 #favorite{
-    width:30% ;
+    width:70% ;
     margin: auto;
     height: 35px;
-    border: 3px solid white;
+    border: 3px solid lightgray;
     background-color: #00000000;
-    color: white;
+    color: lightgray;
     font-weight: 600;
     font-size: 1rem;
-    margin-bottom: 45px;
+    position: relative;
+    border-radius: 5px;
+    bottom: 7%;
 }
 
 #favorite:hover{
-    background-color: white;
+    background-color: lightgray;
     cursor: pointer;
-    color: rgb(0, 0, 130);
+    color: rgb(35, 35, 35);
 }

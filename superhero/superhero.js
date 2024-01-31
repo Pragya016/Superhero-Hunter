@@ -2,6 +2,8 @@
 const result = document.querySelector('#result');
 const addToFavBtn = document.querySelector('#fav-button');
 const userInput = document.getElementById('hero-name');
+const heroImageContainer = document.querySelector('.superhero-image');
+const heroDetailsContainer = document.querySelector('.superhero-details');
 
 // favorite superhero 
 const favorites = [];
@@ -39,102 +41,97 @@ async function getHeroData(name) {
 getHeroData(heroId);
 
 function displaySuperHero(data) {
-    console.log(data)
     let description;
     let comics;
     let events;
     let series;
     let stories;
+    console.log(data)
+
+    // appped superhero image to superhero image container
+    const heroImage = document.createElement('img');
+    heroImage.src = data.thumbnail.path + "." + data.thumbnail.extension
+    heroImageContainer?.appendChild(heroImage);
+
 
     // check if any series is available 
     if (data.series.available === 0) {
         series = '';
     } else {
-        const seriesHtml = data.series.items.map(series => `<p>${series.name}</p>`).join('');
-        series = ` <div class="series">
-            <h4>Series : </h4>
-            <div class='all-series'>
-            <p>${seriesHtml}</p>
-            </div>
-        </div>
-        <div class='devider'></div>`
+        series = `<div class='series'>
+            <p class='series-heading'>Series :</p>
+            <p>${data.series.available}</p>
+        </div>`
     }
 
-    // check if any story is available 
+    // check if any story is available
     if (data.stories.available === 0) {
         stories = '';
     } else {
         const storiesHtml = data.stories.items.map(story => `<p>${story.name}</p>`).join('');
-        stories = ` <div class="stories">
-            <h4>Stories : </h4>
-            <div class='all-stories'>
-            <p>${storiesHtml}</p>
-            </div>
-        </div>
-        <div class='devider'></div>`
+        stories = `<div class='stories'>
+            <p class='stories-heading'>Stories :</p>
+            <p>${data.stories.available}</p>
+        </div>`
     }
 
-    // check if any event is available 
+    // check if any event is available
     if (data.events.available === 0) {
         events = ''
     } else {
         const eventsHtml = data.events.items.map(event => `<p>${event.name}</p>`).join('');
-        events = `<div class="events">
-            <h4>Events : </h4>
-            <div class='all-events'>
-                <p>${eventsHtml}</p>
-            </div>
+        events = ` <div class='events'>
+            <p class='events-heading'>Events :</p>
+            <p>${data.events.available}</p>
         </div>`
     }
 
-    // check if any comic is available 
+    // check if any comic is available
     if (data.comics.available !== 0) {
         const comicsHtml = data.comics.items.map(comic => `<p>${comic.name}</p>`).join('');
-        comics = `<div class="comics">
-            <h4>Comics : </h4>
-            <div class='all-comics'>
-            <p>${comicsHtml}</p>
-            </div>
-        </div>
-        <div class='devider'></div>`
+        comics = `<div class='comics'>
+            <p class='comic-heading'>Comics :</p>
+            <p>${data.comics.available}</p>
+        </div>`
     } else {
         comics = ''
     }
 
-    // check if hero description is available 
+    // check if hero description is available
     if (data.description !== "") {
-        description = `<div class="description">
-                <h4>Description: </h4>
-                <p>${data.description}</p>
-                </div>
-                <div class='devider'></div>`
+        description = `<div class='details'>
+            <p class='details-heading'>Description :</p>
+            <p>${data.description}</p>
+        </div>`
     } else {
         description = '';
     }
 
-    // display superhero details
-    const html = `
-    <div class='hero-details'>
-        <div class='details-container'>
-        <h1 class="name">${data.name}</h1>
-        <div class='hero-img'>
-            <img src="${data.thumbnail.path}.${data.thumbnail.extension}"/>
-        </div>
-        ${description}
-        ${comics}
-        ${events}
-       ${series}
-       ${stories}
-        </div>
-        <button id="favorite">Add to favorites</button>
-    </div>
-  `;
 
-    result?.insertAdjacentHTML('beforeend', html);
-    const favoriteBtn = document.querySelector('#favorite');
-    favoriteBtn?.addEventListener('click', () => {
+    // append superhero details to superhero details container
+    const details = `
+        <div class='superhero-name'>
+            <p class='name'>Name :</p>
+            <p>${data.name}</p>
+        </div>
+        ${comics}
+        ${series}
+        ${stories}
+       ${events}
+        ${description}
+    `
+
+    heroDetailsContainer?.insertAdjacentHTML('afterbegin', details)
+
+    // create button and add event listener
+    const favBtn = document.createElement('button');
+    favBtn.id = 'favorite'
+    favBtn.textContent = 'Add to favorites';
+    favBtn?.addEventListener('click', () => {
+        favBtn.textContent = 'Added Successfully';
         addToFavorites(data.name);
     });
+    result?.appendChild(favBtn);
 }
 
 // add character to favorites list
@@ -145,7 +142,6 @@ function addToFavorites(id) {
         return;
     }
 
-    alert('Added to the favorites');
     favorites.push(id);
     saveUniqueItem(favorites, id);
 }
