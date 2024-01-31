@@ -6,7 +6,7 @@ const heroImageContainer = document.querySelector('.superhero-image');
 const heroDetailsContainer = document.querySelector('.superhero-details');
 
 // favorite superhero 
-const favorites = [];
+// const favorites = [];
 
 // keys
 const publicKey = '4030d53488ca263a048f5b7092321655';
@@ -40,13 +40,13 @@ async function getHeroData(name) {
 
 getHeroData(heroId);
 
+// display superhero card
 function displaySuperHero(data) {
     let description;
     let comics;
     let events;
     let series;
     let stories;
-    console.log(data)
 
     // appped superhero image to superhero image container
     const heroImage = document.createElement('img');
@@ -123,38 +123,55 @@ function displaySuperHero(data) {
 
     heroDetailsContainer?.insertAdjacentHTML('afterbegin', details)
 
-    // create button and add event listener
+    // create button 
     const favBtn = document.createElement('button');
     favBtn.id = 'favorite'
-    favBtn.textContent = 'Add to favorites';
-    favBtn?.addEventListener('click', () => {
+
+    // check if key exists in local storage, set text content accordingly
+    const key = checkKeyInLocalStorage(data.name);
+    if (key) {
         favBtn.textContent = 'Added Successfully';
-        addToFavorites(data.name);
+    } else {
+        favBtn.textContent = 'Add to favorites';
+    }
+
+    // add event listener on favorite button
+    favBtn?.addEventListener('click', () => {
+        const key = checkKeyInLocalStorage(data.name);
+        if (!key) {
+            favBtn.textContent = `Added Successfully`;
+            addToFavorites(data);
+        } else {
+            alert('Already added to the favorites!')
+        }
     });
+
+
     result?.appendChild(favBtn);
 }
 
 // add character to favorites list
 function addToFavorites(id) {
-    const idIndex = favorites.indexOf(id);
-    if (idIndex >= 0) {
-        alert('already added to the favorites!')
-        return;
+    const obj = {
+        name: id.name,
+        image: id.thumbnail.path + '.' + id.thumbnail.extension,
     }
 
-    favorites.push(id);
-    saveUniqueItem(favorites, id);
+    console.log(obj);
+
+    const key = checkKeyInLocalStorage(id.name);
+    if (!key) {
+        // add to local storage
+        localStorage.setItem(id.name, id.name);
+    }
 }
 
-function saveUniqueItem(key, value) {
-    // Check if the key already exists and create a unique key
-    let uniqueKey = key;
-    let counter = 1;
-    while (localStorage.getItem(uniqueKey) !== null) {
-        uniqueKey = key + '_' + counter;
-        counter++;
+function checkKeyInLocalStorage(id) {
+    const key = localStorage.key(id);
+    const value = localStorage.getItem(id);
+    if (value === undefined || value === null) {
+        return false;
     }
 
-    // Store the item with the unique key
-    localStorage.setItem(uniqueKey, value);
-}
+    return true;
+} 

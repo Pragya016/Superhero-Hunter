@@ -69,6 +69,11 @@ function displaySuperheroDetails(data) {
   window.open(`./superhero/hero.html?id=${data.name}`, '_blank');
 }
 
+// execute the function atleast for one time
+window.onload = () => {
+  getSuperheroes();
+};
+
 
 // display superhero details on enter keypress
 searchHeroContainer?.addEventListener('submit', async () => {
@@ -91,10 +96,6 @@ searchHeroContainer?.addEventListener('submit', async () => {
   }
 })
 
-// execute the function atleast for one time
-window.onload = () => {
-  getSuperheroes();
-};
 
 // fetch data by name
 async function fetchDataByName(name, ts, publicKey, hash) {
@@ -105,64 +106,12 @@ async function fetchDataByName(name, ts, publicKey, hash) {
 }
 
 // add event listener on favorites button
-//this button will show a list of favorite superheroes that would have saved by the user.
-favoriteBtn?.addEventListener('click', showFavorites)
-
-let favoriteItems = [];
-for (let i = 0; i < localStorage.length; i++) {
-  // find key and value
-  const key = localStorage.key(i);
-  const value = localStorage.getItem(key);
-
-  // add into favorite items list
-  if (value !== undefined && value !== null) {
-    favoriteItems.push(value);
-  }
-}
-
-// add favorite items in the container from local storage
-favoriteItems.forEach(item => {
-  // create elements
-  const favoriteItemDiv = document.createElement('div');
-  const favoriteItemName = document.createElement('p');
-  const reomveBtn = document.createElement('button');
-
-  // assign classes
-  favoriteItemDiv.className = 'favorite-item';
-  reomveBtn.className = 'remove-fav-item';
-
-  // give text content
-  favoriteItemName.textContent = item;
-  reomveBtn.textContent = 'Remove';
-
-  // append to parent div
-  favoriteItemDiv.appendChild(favoriteItemName);
-  favoriteItemDiv.appendChild(reomveBtn);
-  favoritesList?.appendChild(favoriteItemDiv);
-
-  // add event listener to remove button
-  reomveBtn.addEventListener('click', (e, key) => {
-    removefavoriteItem(e, item);
-  })
-
-})
+favoriteBtn?.addEventListener('click', showFavorites);
 
 
 // show favorites superheroes
-let isFavoritesListEmpty = false;
 function showFavorites() {
-  if (favoriteItems.length === 0) {
-    favHeroInfo.style.display = "block";
-  } else {
-    favHeroInfo.style.display = "none";
-    if (!isFavoritesListEmpty) {
-      favoritesList.style.display = 'block';
-      isFavoritesListEmpty = true;
-    } else {
-      favoritesList.style.display = 'none';
-      isFavoritesListEmpty = false;
-    }
-  }
+  window.open('./favorites/favorites.html', '_blank');
 }
 
 // remove favorite item from the list
@@ -174,11 +123,11 @@ function removefavoriteItem(e, key) {
 
 
 // show suggestions
-userInputName?.addEventListener('input', (e) => {
+// userInputName?.addEventListener('input', (e) => {
 
-  superheroesData.forEach(el => {
-    if (el.name.includes(e.target.value)) {
-      setTimeout(() => console.log(el.name), 2000)
-    }
-  });
-})
+//   superheroesData.forEach(el => {
+//     if (el.name.includes(e.target.value)) {
+//       setTimeout(() => console.log(el.name), 2000)
+//     }
+//   });
+// })
