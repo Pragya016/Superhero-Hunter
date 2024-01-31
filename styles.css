@@ -1,33 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 body{
   margin: 0;
   padding: 0;
-  backdrop-filter: blur(10px);
+  background:url('https://images3.alphacoders.com/563/563119.jpg');
+  background-size: cover;
+  background-position: center;
 }  
 
 .heading, .heading-h3, .superhero-name {
   cursor: pointer;
 }
 
+/* --------superhero container----------- */
+
 #superheroes-container{
   display: flex;
   flex-direction: column;
-  background:url('https://wallpapers.com/images/hd/4k-marvel-digital-cartoon-t9z4pnuivn6488jq.jpg');
-  background-position: center;
   align-items: center;
+  background-color: rgba(32, 32, 32, 0.418);
+  box-shadow: 0 0 15px rgb(91, 91, 91);
+  backdrop-filter: blur(2px);
   justify-content: center;
-  height: 100vh;
-  width: auto;
+  height: 60vh;
+  width: 65vw;
+  border-radius: 10px;
+  margin: 55px auto;
+  padding: 40px;
+  overflow: scroll;
 }
 
+/* main heading */
+
 .heading{
-  margin-top: 30px;
-  margin-bottom: 10px;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.297);
-  font-size: 4rem;
-  color: rgb(1, 116, 192);
-  font-family: 'Cute Font', sans-serif;
+  margin: 0;
+  font-size: 3.5rem;
+  color: lightgray;
+  font-family: 'Poppins', sans-serif;
 }
 
 .rocket-emoji {
@@ -40,51 +49,51 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
+
+/* search bar */
 
 #hero-name{
   height: 35px;
   font-size: 1rem;
-  width: 30%;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+  width: 40%;
+  background-color: #00000000;
   border: none;
-  color: rgb(4, 103, 225);
-  padding-left: 15px;
-  box-shadow: 0 0 10px rgba(0, 145, 255, 0.271);
+  padding-left: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.344);
+  color: lightgray;
 }
 
-.search-hero-btn {
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+#hero-name:focus {
+  outline: none;
+}
+
+/* search icon */
+
+i {
   cursor: pointer;
   border: none;
-  width: 10%;
-  height: 37px;
-  background-color: rgb(7, 124, 207);
-  border-left: none;
-  color: white;
-  padding-right: 15px;
+  background-color: #00000000;
+  color: lightgray;
+  position: relative;
+  left: 15px;
   font-size: 0.9rem;
   font-weight: 600;
 }
 
-.search-hero-btn:hover{
-  box-shadow: inset 0 0 8px 2px rgb(0, 92, 128);
-  border: 1px solid rgb(0, 92, 128);
-}
+/*------------- favorites list------------ */
 
 #favorites{
-  position: absolute;
-  top: 20px;
-  right: 10px;
+  text-align: right;
+  margin: 20px;
 }
 
 #fav-button {
   background-color: #00000000;
-  border:2px solid white ;
+  border:2px solid lightgray ;
   padding:5px 8px;
-  color: white;
+  color: lightgray;
   font-size: 0.9rem;
   box-sizing: border-box;
   font-weight: 600;
@@ -92,22 +101,23 @@ body{
 
 #fav-button:hover{
   cursor: pointer;
-  background-color: white;
-  color: rgb(0, 67, 154);
+  background-color: lightgray;
+  color: rgb(53, 53, 53);
 }
 
 .favorite-content{
-  background-color: whitesmoke;
+  background-color: lightgray;
+  display: none;
   position: absolute;
   border-radius: 10px;
   right: 90px;
   top: 20px;
   overflow: scroll;
-  background-color: white;
+  background-color: lightgray;
   width: 200px;
   color: rgb(2, 107, 187);
   padding: 0 10px;
-  height: 250px;
+  height: auto;
   max-height: 250px;
 }
 
@@ -139,54 +149,39 @@ body{
   color: white;
 }
 
+/* -------all superhero names container -----------*/
+
 .heading-h3 {
   margin-top: 50px;
    font-size: 1.5rem;
    margin-bottom: 20px;
-  color: rgb(1, 116, 192);
-  /* font-family: 'Cute Font', sans-serif; */
-  text-shadow: 0px 0px 3px rgb(255, 255, 255);
+   color: lightgray;
+  font-family: 'Poppins', sans-serif;
 }
 
 .all-superheroes {
-  box-shadow: 0 0 15px rgb(0, 106, 167);
   width: 70%;
   border-radius: 10px;
   height: 40vh;
   padding: 20px;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.891);
+  background-color: rgba(255, 255, 255, 0.128);
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   overflow: scroll;
-
 }
+
+/* one superhero name box */
 
 .superhero {
   display: flex;
   padding: 10px;
   flex-direction: column;
-  border: 2px solid black;
 }
 
 .superhero-name {
-  color: rgb(0, 101, 177);
+  color: lightgray;
   font-size: 1rem;
   font-weight: 600;
-}
-
-#results {
-  height: 40vh;
-}
-
-.hero-img{
-  height: 150px;
-  width: 150px;
-  display: inline;
-}
-
-/* favorites */
-.favorite-content {
-  display: none;
 }

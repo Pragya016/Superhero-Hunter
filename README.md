@@ -25,4 +25,4 @@ Superhero Hunter is a project that allows users to search for superheroes, add t
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/superhero-hunter.git
+   git clone https://github.com/Pragya016/Superhero-Hunter.git

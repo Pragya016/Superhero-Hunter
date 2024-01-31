@@ -3,7 +3,6 @@ const homePage = document.querySelector('#superheroes-container')
 const userInput = document.getElementById('hero-name');
 const allSuperHeroes = document.querySelector('.all-superheroes')
 const superHeroName = document.querySelector('.superhero-name');
-const searchHeroBtn = document.querySelector('.search-hero-btn');
 const favoritesList = document.querySelector('.favorite-content');
 const favoriteBtn = document.querySelector('#fav-button');
 const favHeroInfo = document.querySelector('.fav-info-para');
@@ -24,7 +23,7 @@ function generateHash(ts, privateKey, publicKey) {
 }
 
 // getAPI key
-function getAPI() {
+function fetchData() {
   const hash = generateHash(ts, privateKey, publicKey);
   // const apiUrl = `https://gateway.marvel.com/v1/public/characters?name=${heroName}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
   const apiUrl = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
@@ -34,7 +33,7 @@ function getAPI() {
 // get superheroes and display their names
 async function getSuperheroes() {
   try {
-    const apiUrl = getAPI();
+    const apiUrl = fetchData();
     const req = await fetch(apiUrl);
     const res = await req.json();
     console.log(res)
@@ -59,14 +58,14 @@ function displayNames(data) {
     superHeroName.className = "superhero-name"
     superHeroName.innerHTML = el.name || "-";
     superHeroDiv.appendChild(superHeroName);
-    superHeroName.addEventListener('click', () => displaySuperHero(el));
+    superHeroName.addEventListener('click', () => displaySuperheroDetails(el));
     allSuperHeroes?.appendChild(superHeroDiv);
   });
 }
 
 
-// display a particular Superhero
-function displaySuperHero(data) {
+// display superhero details if user clicks on any name
+function displaySuperheroDetails(data) {
   window.open('./superhero/hero.html?id=' + data.name, '_blank');
 }
 
@@ -79,14 +78,15 @@ window.onload = () => {
 userInput?.addEventListener('input', (e) => {
 
   heroData.forEach(el => {
-    if (el.name.includes(e.target.value)){
+    if (el.name.includes(e.target.value)) {
       console.log(el.name);
     }
   });
 })
 
-// handling click event on search button
-searchHeroBtn.addEventListener("click", async () => {
+// display superhero details on enter keypress
+userInput.addEventListener('submit', displaySuperhero);
+async function displaySuperhero() {
   const hash = generateHash(ts, privateKey, publicKey);
   const heroName = userInput.value;
 
@@ -97,45 +97,63 @@ searchHeroBtn.addEventListener("click", async () => {
   }
 
   try {
-    const req = await fetch(`https://gateway.marvel.com/v1/public/characters?name=${heroName}&ts=${ts}&apikey=${publicKey}&hash=${hash}`);
-    const res = await req.json();
-    const data = res.data.results[0];
+    const data = fetchDataByName(heroName, ts, publicKey, hash);
+    console.log(data);
     userInput.value = '';
-    window.open('./superhero/hero.html?id=' + data.name,);
+    window.open('./superhero/hero.html?id=' + data.name, '_blank');
   }
-  catch (err) { 
+  catch (err) {
     setTimeout(() => {
-      window.open('./ErrorPage/error.html', '_self');
+      window.open('./ErrorPage/error.html', '_blank');
     }, 1000)
   }
-})
+}
 
+// fetch data by name
+async function fetchDataByName(name, ts, publicKey, hash) {
+  const req = await fetch(`https://gateway.marvel.com/v1/public/characters?name=${name}&ts=${ts}&apikey=${publicKey}&hash=${hash}`);
+  const res = await req.json();
+  const data = res.data.results[0];
+  return data
+}
+
+// add event listener on favorites button
+//this button will show a list of favorite superheroes that would have saved by the user.
 favoriteBtn?.addEventListener('click', showFavorites)
 
 let favoriteItems = [];
 for (let i = 0; i < localStorage.length; i++) {
+  // find key and value
   const key = localStorage.key(i);
   const value = localStorage.getItem(key);
 
+  // add into favorite items list
   if (value !== undefined && value !== null) {
     favoriteItems.push(value);
   }
 }
 
-// add favorite items to the container from local storage
+// add favorite items in the container from local storage
 favoriteItems.forEach(item => {
+  // create elements
   const favoriteItemDiv = document.createElement('div');
   const favoriteItemName = document.createElement('p');
   const reomveBtn = document.createElement('button');
+
+  // assign classes
   favoriteItemDiv.className = 'favorite-item';
   reomveBtn.className = 'remove-fav-item';
+
+  // give text content
   favoriteItemName.textContent = item;
   reomveBtn.textContent = 'Remove';
 
+  // append to parent div
   favoriteItemDiv.appendChild(favoriteItemName);
   favoriteItemDiv.appendChild(reomveBtn);
   favoritesList?.appendChild(favoriteItemDiv);
 
+  // add event listener to remove button
   reomveBtn.addEventListener('click', (e, key) => {
     removefavoriteItem(e, item);
   })
@@ -146,17 +164,17 @@ favoriteItems.forEach(item => {
 // show favorites superheroes
 let isFavoritesListEmpty = false;
 function showFavorites() {
-  if (favoriteItems.length !== 0) {
-    // alert("You Haven't marked any superhero as favorite yet. Explore superheores to mark them as favorite!");
-    favHeroInfo.style.display = "none";
-  }
-
-  if (!isFavoritesListEmpty) {
-    favoritesList.style.display = 'block';
-    isFavoritesListEmpty = true;
+  if (favoriteItems.length === 0) {
+    favHeroInfo.style.display = "block";
   } else {
-    favoritesList.style.display = 'none';
-    isFavoritesListEmpty = false;
+    favHeroInfo.style.display = "none";
+    if (!isFavoritesListEmpty) {
+      favoritesList.style.display = 'block';
+      isFavoritesListEmpty = true;
+    } else {
+      favoritesList.style.display = 'none';
+      isFavoritesListEmpty = false;
+    }
   }
 }
 
