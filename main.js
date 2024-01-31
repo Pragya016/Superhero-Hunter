@@ -70,6 +70,7 @@ function displaySuperheroDetails(data) {
 }
 
 
+// display superhero details on enter keypress
 searchHeroContainer?.addEventListener('submit', async () => {
   let input = userInputName.value;
   if (input === '') {
@@ -94,31 +95,6 @@ searchHeroContainer?.addEventListener('submit', async () => {
 window.onload = () => {
   getSuperheroes();
 };
-
-// // display superhero details on enter keypress
-// async function displaySuperhero(details) {
-//   const hash = generateHash(ts, privateKey, publicKey);
-//   const heroName = userInputName.value;
-//   console.log(userInputName.value);
-
-//   // show an alert if user hasn't typed enything
-//   if (heroName === '') {
-//     // alert('Invalid user input!');
-//     return;
-//   }
-
-//   try {
-//     const data = fetchDataByName(heroName, ts, publicKey, hash);
-//     console.log(data);
-//     userInputName.value = '';
-//     window.open('./superhero/hero.html?id=' + details.name, '_blank');
-//   }
-//   catch (err) {
-//     setTimeout(() => {
-//       window.open('./ErrorPage/error.html', '_blank');
-//     }, 1000)
-//   }
-// }
 
 // fetch data by name
 async function fetchDataByName(name, ts, publicKey, hash) {
@@ -198,11 +174,11 @@ function removefavoriteItem(e, key) {
 
 
 // show suggestions
-// userInputName?.addEventListener('input', (e) => {
+userInputName?.addEventListener('input', (e) => {
 
-//   heroData.forEach(el => {
-//     if (el.name.includes(e.target.value)) {
-//       console.log(el.name);
-//     }
-//   });
-// })
+  superheroesData.forEach(el => {
+    if (el.name.includes(e.target.value)) {
+      setTimeout(() => console.log(el.name), 2000)
+    }
+  });
+})
