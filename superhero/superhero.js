@@ -162,7 +162,7 @@ function addToFavorites(id) {
     const key = checkKeyInLocalStorage(id.name);
     if (!key) {
         // add to local storage
-        localStorage.setItem(id.name, id.name);
+        localStorage.setItem(id.name, JSON.stringify(obj));
     }
 }
 
