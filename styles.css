@@ -196,9 +196,7 @@ i {
   border-bottom-left-radius: 5px;
   padding:0 10px 10px 10px;
   margin-left: 15px;
-  min-height: auto;
-  max-height: 100px;
-  min-height: 20px;
+  height: 800px;
   z-index: 2;
   overflow: scroll;
   display: none;
