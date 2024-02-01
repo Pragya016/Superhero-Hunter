@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+
 body, html {
     padding: 0;
     margin: 0;
     color: lightgray;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /* results container (mainly for background purpose) */
@@ -68,9 +71,9 @@ body, html {
 }
 
 .name, .comic-heading, .series-heading, .stories-heading, .events-heading, .details-heading {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-right: 5px;
 }
 
 /* --------------- */
@@ -80,8 +83,8 @@ body, html {
     margin: auto;
     height: 35px;
     border: 3px solid lightgray;
-    background-color: #00000000;
-    color: lightgray;
+    background-color: lightgray;
+    color: rgb(37, 37, 37);
     font-weight: 600;
     font-size: 1rem;
     position: relative;
@@ -90,7 +93,9 @@ body, html {
 }
 
 #favorite:hover{
-    background-color: lightgray;
-    cursor: pointer;
-    color: rgb(35, 35, 35);
+    box-shadow: 0 0 10px lightgrey;
+}
+
+#favorite:focus {
+    outline: none;
 }

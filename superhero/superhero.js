@@ -59,7 +59,7 @@ function displaySuperHero(data) {
         series = '';
     } else {
         series = `<div class='series'>
-            <p class='series-heading'>Series :</p>
+            <p class='series-heading'>Series:</p>
             <p>${data.series.available}</p>
         </div>`
     }
@@ -70,7 +70,7 @@ function displaySuperHero(data) {
     } else {
         const storiesHtml = data.stories.items.map(story => `<p>${story.name}</p>`).join('');
         stories = `<div class='stories'>
-            <p class='stories-heading'>Stories :</p>
+            <p class='stories-heading'>Stories:</p>
             <p>${data.stories.available}</p>
         </div>`
     }
@@ -81,7 +81,7 @@ function displaySuperHero(data) {
     } else {
         const eventsHtml = data.events.items.map(event => `<p>${event.name}</p>`).join('');
         events = ` <div class='events'>
-            <p class='events-heading'>Events :</p>
+            <p class='events-heading'>Events:</p>
             <p>${data.events.available}</p>
         </div>`
     }
@@ -90,7 +90,7 @@ function displaySuperHero(data) {
     if (data.comics.available !== 0) {
         const comicsHtml = data.comics.items.map(comic => `<p>${comic.name}</p>`).join('');
         comics = `<div class='comics'>
-            <p class='comic-heading'>Comics :</p>
+            <p class='comic-heading'>Comics:</p>
             <p>${data.comics.available}</p>
         </div>`
     } else {
@@ -100,7 +100,7 @@ function displaySuperHero(data) {
     // check if hero description is available
     if (data.description !== "") {
         description = `<div class='details'>
-            <p class='details-heading'>Description :</p>
+            <p class='details-heading'>Description:</p>
             <p>${data.description}</p>
         </div>`
     } else {
@@ -111,7 +111,7 @@ function displaySuperHero(data) {
     // append superhero details to superhero details container
     const details = `
         <div class='superhero-name'>
-            <p class='name'>Name :</p>
+            <p class='name'>Name:</p>
             <p>${data.name}</p>
         </div>
         ${comics}

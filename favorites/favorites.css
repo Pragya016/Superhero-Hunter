@@ -1,25 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
+    font-family: 'Ubuntu', sans-serif;
 }
 
+/* navbar */
+.nav-bar {
+    background-color: black;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.404);
+    padding: 0;
+    margin: 0;
+    height: 60px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-title {
+    color: lightgray;
+    padding: 0;
+    margin: 0;
+    font-weight: 700;
+}
+
+/* -------- */
 .info {
-    color: white;
-    font-weight: 600;
-    font-size: 2rem;
+    color: lightgray;
+    font-size: 1.5rem;
     margin-top: 40vh;
 }
 
+
+/* favorites container */
 #favorite-superheroes{
     height: 100vh;
     width: 100vw;
     overflow: scroll;
-    background:url('https://e1.pxfuel.com/desktop-wallpaper/200/912/desktop-wallpaper-marvel-comics-ultra-wide-tv-marvel-pc.jpg') ;
+    background:url('https://img.freepik.com/premium-photo/black-grunge-marvel-abstract-floor-texture-background_582637-801.jpg') ;
     background-position: center;
     background-size: cover;
     display: flex;
     flex-wrap: wrap;
-    filter: grayscale(0.5);
     justify-content: space-evenly;
     padding: 20px;
 }
@@ -47,9 +70,10 @@ body, html {
 
 .superhero-name {
     padding: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 0 0 10px 0;
     font-weight: 600;
+    text-shadow:0 0 2px rgb(34, 34, 34);
     color: lightgray;
 }
 
@@ -63,6 +87,5 @@ body, html {
 }
 
 .remove-btn:hover{
-    background-color: #00000000;
-    color: lightgray;
+    box-shadow: 0 0 5px lightgrey;
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
 
 body{
   margin: 0;
@@ -6,6 +6,8 @@ body{
   background:url('https://images3.alphacoders.com/563/563119.jpg');
   background-size: cover;
   background-position: center;
+  font-family: 'Ubuntu', sans-serif;
+  overflow: scroll;
 }  
 
 .heading, .heading-h3, .superhero-name {
@@ -34,9 +36,9 @@ body{
 
 .heading{
   margin: 0;
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: lightgray;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .rocket-emoji {
@@ -80,10 +82,6 @@ i {
   left: 15px;
   font-size: 0.9rem;
   font-weight: 600;
-}
-
-#hero-name {
-  /* opacity:0; */
 }
 
 /*------------- favorites list------------ */
@@ -160,14 +158,14 @@ i {
    font-size: 1.5rem;
    margin-bottom: 20px;
    color: lightgray;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .all-superheroes {
   width: 70%;
   border-radius: 10px;
-  height: 40vh;
-  padding: 20px;
+  height: auto;
+  padding: 10px;
   display: flex;
   background-color: rgba(255, 255, 255, 0.128);
   flex-direction: column;
@@ -185,7 +183,31 @@ i {
 }
 
 .superhero-name {
-  color: lightgray;
+  color: rgb(172, 172, 172);
   font-size: 1rem;
+  font-weight: 600;
+}
+
+/* suggestions container */
+#suggestions-container {
+  background-color: rgba(211, 211, 211, 0.528);
+  width: 40% ;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding:0 10px 10px 10px;
+  margin-left: 15px;
+  min-height: auto;
+  max-height: 100px;
+  min-height: 20px;
+  z-index: 2;
+  overflow: scroll;
+  display: none;
+}
+
+.suggestion-item {
+  color: rgb(52, 52, 52);
+  border-bottom: 2px solid rgba(211, 211, 211, 0.228);
+  font-size: 1rem;
+  padding: 5px;
   font-weight: 600;
 }

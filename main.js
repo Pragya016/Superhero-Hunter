@@ -1,6 +1,7 @@
 // selecting all the elements from html
 const homePage = document.querySelector('#superheroes-container')
 const searchHeroContainer = document.querySelector('#search-hero-container')
+const suggestionsContainer = document.querySelector('#suggestions-container')
 const userInputName = document.getElementById('hero-name');
 const allSuperHeroes = document.querySelector('.all-superheroes')
 const superHeroName = document.querySelector('.superhero-name');
@@ -123,11 +124,38 @@ function removefavoriteItem(e, key) {
 
 
 // show suggestions
-// userInputName?.addEventListener('input', (e) => {
+userInputName?.addEventListener('input', (e) => {
+  const input = e.target.value || '';
+  console.log(input)
+  const filteredSuggestions = suggestions.filter(suggestion => suggestion.toLowerCase().includes(input.toLowerCase()));
+  console.log(filteredSuggestions)
+  displaySuggestions(filteredSuggestions);
+})
 
-//   superheroesData.forEach(el => {
-//     if (el.name.includes(e.target.value)) {
-//       setTimeout(() => console.log(el.name), 2000)
-//     }
-//   });
-// })
+function displaySuggestions(suggestions) {
+  suggestionsContainer.innerHTML = '';
+  if (suggestions.length > 0) {
+    suggestions.forEach(suggestion => {
+      console.log(suggestion)
+      const div = document.createElement('div');
+      div.textContent = suggestion;
+      div.classList.add('suggestion-item');
+      div.onclick = function () {
+        userInputName.value = suggestion;
+        suggestionsContainer.innerHTML = '';
+      };
+      suggestionsContainer.appendChild(div);
+    });
+    suggestionsContainer.style.display = 'block';
+  } else {
+    suggestionsContainer.style.display = 'none';
+  }
+}
+
+document.addEventListener('click', function (event) {
+  const isClickInside = userInputName.contains(event.target);
+  if (!isClickInside) {
+    document.getElementById('suggestions-container').style.display = 'none';
+  }
+});
+
