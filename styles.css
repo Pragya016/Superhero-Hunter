@@ -1,160 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
 
-:root {
-  --text-color: rgb(180, 180, 180);
-}
-
 body{
   margin: 0;
   padding: 0;
+  background:url('https://images3.alphacoders.com/563/563119.jpg');
+  background-size: cover;
+  background-position: center;
   font-family: 'Ubuntu', sans-serif;
+  overflow: scroll;
 }  
-
-/*--------- background ------- */
-
-.context {
-    width: 100%;
-    position: absolute;    
-}
-
-
-.area{
-    background: #000;  
-    width: 100%;
-    height:100vh;
-}
-
-.circles{
-    position: absolute;
-    top: 0;
-  margin:0;
-  padding:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.circles li{
-    position: absolute;
-    display: block;
-    list-style: none;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    animation: animate 25s linear infinite;
-    bottom: -150px;
-    
-}
-
-.circles li:nth-child(1){
-    left: 25%;
-    width: 80px;
-    height: 80px;
-    animation-delay: 0s;
-}
-
-
-.circles li:nth-child(2){
-    left: 10%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 2s;
-    animation-duration: 12s;
-}
-
-.circles li:nth-child(3){
-    left: 70%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 4s;
-}
-
-.circles li:nth-child(4){
-    left: 40%;
-    width: 60px;
-    height: 60px;
-    animation-delay: 0s;
-    animation-duration: 18s;
-}
-
-.circles li:nth-child(5){
-    left: 65%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 0s;
-}
-
-.circles li:nth-child(6){
-    left: 75%;
-    width: 110px;
-    height: 110px;
-    animation-delay: 3s;
-}
-
-.circles li:nth-child(7){
-    left: 35%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 7s;
-}
-
-.circles li:nth-child(8){
-    left: 50%;
-    width: 25px;
-    height: 25px;
-    animation-delay: 15s;
-    animation-duration: 45s;
-}
-
-.circles li:nth-child(9){
-    left: 20%;
-    width: 15px;
-    height: 15px;
-    animation-delay: 2s;
-    animation-duration: 35s;
-}
-
-.circles li:nth-child(10){
-    left: 85%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 0s;
-    animation-duration: 11s;
-}
-
-
-
-@keyframes animate {
-
-    0%{
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-        border-radius: 0;
-    }
-
-    100%{
-        transform: translateY(-1000px) rotate(720deg);
-        opacity: 0;
-        border-radius: 50%;
-    }
-
-}
-
-
-/* --------superhero container----------- */
 
 .heading, .heading-h3, .superhero-name {
   cursor: pointer;
 }
 
+/* --------superhero container----------- */
+
 #superheroes-container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(115, 115, 115, 0.127);
-  background-color: rgba(255, 255, 255, 0.121);
-  box-shadow: 0 0 25px rgba(111, 111, 111, 0.685);
+  background-color: rgba(32, 32, 32, 0.418);
+  box-shadow: 0 0 15px rgb(91, 91, 91);
   backdrop-filter: blur(2px);
   justify-content: center;
   height: 60vh;
@@ -170,7 +37,7 @@ body{
 .heading{
   margin: 0;
   font-size: 3rem;
-  color: var(--text-color);
+  color: lightgray;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -197,11 +64,12 @@ body{
   border: none;
   padding-left: 20px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.344);
-  color: var(--text-color);
+  color: lightgray;
 }
 
 #search-hero-container input:focus {
   outline: none;
+  background-color: transparent;
 }
 
 /* search icon */
@@ -210,7 +78,7 @@ i {
   cursor: pointer;
   border: none;
   background-color: #00000000;
-  color: var(--text-color);
+  color: lightgray;
   position: relative;
   left: 15px;
   font-size: 0.9rem;
@@ -226,9 +94,9 @@ i {
 
 #fav-button {
   background-color: #00000000;
-  border:2px solid var(--text-color) ;
+  border:2px solid lightgray ;
   padding:5px 8px;
-  color: var(--text-color);
+  color: lightgray;
   font-size: 0.9rem;
   box-sizing: border-box;
   font-weight: 600;
@@ -236,19 +104,19 @@ i {
 
 #fav-button:hover{
   cursor: pointer;
-  background-color: var(--text-color);
+  background-color: lightgray;
   color: rgb(53, 53, 53);
 }
 
 .favorite-content{
-  background-color: var(--text-color);
+  background-color: lightgray;
   display: none;
   position: absolute;
   border-radius: 10px;
   right: 90px;
   top: 20px;
   overflow: scroll;
-  background-color: var(--text-color);
+  background-color: lightgray;
   width: 200px;
   color: rgb(2, 107, 187);
   padding: 0 10px;
@@ -290,7 +158,7 @@ i {
   margin-top: 50px;
    font-size: 1.5rem;
    margin-bottom: 20px;
-   color: var(--text-color);
+   color: lightgray;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -329,7 +197,9 @@ i {
   border-bottom-left-radius: 5px;
   padding:0 10px 10px 10px;
   margin-left: 15px;
-  height: 800px;
+  min-height: auto;
+  max-height: 100px;
+  min-height: 20px;
   z-index: 2;
   overflow: scroll;
   display: none;
@@ -340,5 +210,6 @@ i {
   border-bottom: 2px solid rgba(211, 211, 211, 0.228);
   font-size: 1rem;
   padding: 5px;
+  cursor: pointer;
   font-weight: 600;
 }

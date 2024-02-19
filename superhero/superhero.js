@@ -1,3 +1,4 @@
+
 // select element from dom
 const result = document.querySelector('#result');
 const addToFavBtn = document.querySelector('#fav-button');
@@ -5,8 +6,6 @@ const userInput = document.getElementById('hero-name');
 const heroImageContainer = document.querySelector('.superhero-image');
 const heroDetailsContainer = document.querySelector('.superhero-details');
 
-// favorite superhero 
-// const favorites = [];
 
 // keys
 const publicKey = '4030d53488ca263a048f5b7092321655';
@@ -156,8 +155,6 @@ function addToFavorites(id) {
         name: id.name,
         image: id.thumbnail.path + '.' + id.thumbnail.extension,
     }
-
-    console.log(obj);
 
     const key = checkKeyInLocalStorage(id.name);
     if (!key) {

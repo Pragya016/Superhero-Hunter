@@ -93,13 +93,11 @@ searchHeroContainer?.addEventListener('submit', async () => {
   try {
     const hash = generateHash(ts, privateKey, publicKey);
     const data = await fetchDataByName(input, ts, publicKey, hash);
-    input = '';
     window.open('./superhero/hero.html?id=' + data.name, '_blank');
+    input = '';
   }
   catch (err) {
-    setTimeout(() => {
-      window.open('./ErrorPage/error.html', '_self');
-    }, 1000)
+    window.open('./ErrorPage/error.html', '_self');
   }
 })
 
@@ -148,8 +146,7 @@ function displaySuggestions(suggestions) {
       div.classList.add('suggestion-item');
       div.onclick = function () {
         // userInputName.value = suggestion;
-        // suggestionsContainer.innerHTML = '';
-        window.open()
+        window.open('./superhero/hero.html?id=' + suggestion, '_blank');
       };
       suggestionsContainer.appendChild(div);
     });

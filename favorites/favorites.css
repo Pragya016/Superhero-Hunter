@@ -88,4 +88,5 @@ body, html {
 
 .remove-btn:hover{
     box-shadow: 0 0 5px lightgrey;
+    cursor: pointer;
 }
