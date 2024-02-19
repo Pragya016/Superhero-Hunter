@@ -193,20 +193,18 @@ i {
 #suggestions-container {
   background-color: rgba(211, 211, 211, 0.528);
   width: 40% ;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  /* border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px; */
   padding:0 10px 10px 10px;
   margin-left: 15px;
-  min-height: auto;
-  max-height: 100px;
-  min-height: 20px;
+  height: 700px;
   z-index: 2;
   overflow: scroll;
   display: none;
 }
 
 .suggestion-item {
-  color: rgb(52, 52, 52);
+  color: rgba(0, 0, 0, 0.527);
   border-bottom: 2px solid rgba(211, 211, 211, 0.228);
   font-size: 1rem;
   padding: 5px;
